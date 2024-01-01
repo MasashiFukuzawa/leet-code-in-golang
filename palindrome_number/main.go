@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 /*
@@ -27,22 +26,22 @@ Constraints:
 -2^31 <= x <= 2^31 - 1
 */
 func isPalindrome(x int) bool {
-	str := strconv.Itoa(x)
-
-	var chars []string
-	for _, char := range str {
-		chars = append(chars, string(char))
+	if x < 0 {
+		// 負の数は回文になり得ない
+		return false
 	}
 
-	charLength := len(chars)
+	original := x
+	reversed := 0
 
-	for i := 0; i < charLength/2; i++ {
-		if chars[i] != chars[charLength-i-1] {
-			return false
-		}
+	// 数値を逆順にする
+	for x > 0 {
+		reversed = reversed*10 + x%10
+		x /= 10
 	}
 
-	return true
+	// 逆順にした数値が元の数値と同じかチェック
+	return original == reversed
 }
 
 func main() {
