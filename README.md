@@ -2,7 +2,7 @@
 
 ```sh
 # run (example)
-go run two_sum/main.go
+go run problems/two_sum/main.go
 
 # fmt (example)
 gofmt -w .
