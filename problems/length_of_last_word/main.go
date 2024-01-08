@@ -31,8 +31,17 @@ There will be at least one word in s.
 */
 
 func lengthOfLastWord(s string) int {
-	// TODO: implement
-	return 0
+	length := 0
+	started := false
+	for i := len(s) - 1; i >= 0; i-- {
+		if s[i] != ' ' {
+			started = true
+			length++
+		} else if started {
+			break
+		}
+	}
+	return length
 }
 
 func main() {
