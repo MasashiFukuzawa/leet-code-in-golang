@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // https://leetcode.com/problems/add-binary/
 
@@ -22,8 +24,29 @@ Each string does not contain leading zeros except for the zero itself.
 */
 
 func addBinary(a string, b string) string {
-	// TODO: implement
-	return ""
+	var result string
+	carry := 0
+
+	i, j := len(a)-1, len(b)-1
+
+	for i >= 0 || j >= 0 || carry == 1 {
+		var sum int = carry
+
+		if i >= 0 {
+			sum += int(a[i] - '0')
+			i--
+		}
+
+		if j >= 0 {
+			sum += int(b[j] - '0')
+			j--
+		}
+
+		carry = sum / 2
+		result = fmt.Sprintf("%c", sum%2+'0') + result
+	}
+
+	return result
 }
 
 func main() {
